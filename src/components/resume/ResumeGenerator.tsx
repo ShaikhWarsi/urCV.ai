@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -6,6 +5,7 @@ import { ResumeData } from '@/pages/Builder';
 import { generateWordDocument, generatePDFFromElement, downloadFile } from '@/services/documentService';
 import { useToast } from '@/hooks/use-toast';
 import { Download, FileText, Image, Link as LinkIcon } from 'lucide-react';
+import html2canvas from 'html2canvas';
 
 interface ResumeGeneratorProps {
   data: ResumeData;
