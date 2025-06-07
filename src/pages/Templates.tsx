@@ -113,13 +113,65 @@ const Templates = () => {
                 </div>
                 <p className="text-sm text-gray-600 mb-4">{template.description}</p>
                 <Link to="/builder">
-                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                  <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200">
                     Use This Template
                   </Button>
                 </Link>
               </div>
             </Card>
           ))}
+        </div>
+
+        {/* Payment Section */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Upgrade to Premium
+            </h2>
+            <p className="text-lg text-gray-600">
+              Get access to all premium templates and advanced features
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="p-6 border-2 border-gray-200">
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-2">Basic</h3>
+                <div className="text-3xl font-bold text-gray-900 mb-4">Free</div>
+                <ul className="text-sm text-gray-600 space-y-2 mb-6">
+                  <li>• 3 basic templates</li>
+                  <li>• PDF download</li>
+                  <li>• Basic AI assistance</li>
+                </ul>
+                <Button variant="outline" className="w-full">
+                  Current Plan
+                </Button>
+              </div>
+            </Card>
+            
+            <Card className="p-6 border-2 border-blue-500 relative">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-medium">
+                  POPULAR
+                </span>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-2">Premium</h3>
+                <div className="text-3xl font-bold text-gray-900 mb-1">$9.99</div>
+                <div className="text-sm text-gray-500 mb-4">per month</div>
+                <ul className="text-sm text-gray-600 space-y-2 mb-6">
+                  <li>• All premium templates</li>
+                  <li>• Unlimited downloads</li>
+                  <li>• Advanced AI features</li>
+                  <li>• Priority support</li>
+                  <li>• Custom branding</li>
+                </ul>
+                <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                  Upgrade Now
+                </Button>
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
 
