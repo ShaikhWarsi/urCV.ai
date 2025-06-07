@@ -1,128 +1,153 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FileText, User, Edit } from "lucide-react";
+import { FileText, Brain, Zap, Star, ChevronRight, Users, Download, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import FloatingChatBot from "@/components/FloatingChatBot";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300">
       {/* Navigation */}
       <nav className="container mx-auto px-4 py-6 animate-fade-in">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center animate-scale-in">
               <FileText className="w-5 h-5 text-white" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               urCV.ai
             </span>
           </div>
-          <Link to="/builder">
-            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl">
-              Create Resume
-            </Button>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
+            <Link to="/templates">
+              <Button variant="ghost" className="hover:bg-blue-50 dark:hover:bg-blue-900 transition-colors">
+                Templates
+              </Button>
+            </Link>
+            <Link to="/builder">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
+                Get Started
+              </Button>
+            </Link>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in">
-            Build Your Perfect
-            <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-pulse">
-              AI-Enhanced Resume
-            </span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in-delayed">
-            Create stunning, ATS-friendly resumes in minutes. Our AI analyzes your content 
-            and suggests improvements to help you stand out from the crowd.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in">
-            <Link to="/builder">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-1">
-                Start Building Now
-              </Button>
-            </Link>
-            <Link to="/templates">
-              <Button size="lg" variant="outline" className="border-2 border-gray-300 hover:border-blue-500 px-8 py-4 rounded-lg transition-all duration-300 transform hover:scale-105">
-                View Templates
-              </Button>
-            </Link>
-          </div>
+      <section className="container mx-auto px-4 py-12 text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-gray-100 mb-6 animate-slide-in-left">
+          Craft Your Future with a Perfect Resume
+        </h1>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 animate-slide-in-right">
+          Create a professional resume that showcases your skills and experience. Get noticed and land your dream job!
+        </p>
+        <div className="space-x-4 animate-fade-in">
+          <Link to="/builder">
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
+              Start Building Now
+            </Button>
+          </Link>
+          <Link to="/templates">
+            <Button variant="outline" className="transform hover:scale-105 transition-all duration-200">
+              View Templates
+            </Button>
+          </Link>
         </div>
-      </div>
+      </section>
 
       {/* Features Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Choose urCV.ai?
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Experience the future of resume building with our AI-powered platform
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <Card className="p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border-0 shadow-lg animate-slide-in-left">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:rotate-12">
-              <User className="w-8 h-8 text-white" />
+      <section className="container mx-auto px-4 py-12">
+        <h2 className="text-3xl font-semibold text-center text-gray-900 dark:text-gray-100 mb-8 animate-fade-in">
+          Unlock the Power of a Professional Resume
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Feature 1 */}
+          <Card className="p-6 hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 animate-slide-in-left">
+            <div className="flex items-center space-x-4 mb-4">
+              <Brain className="w-6 h-6 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">AI-Powered Assistance</h3>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart Input Forms</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Intuitive forms that guide you through every section, ensuring you don't miss any important details
+            <p className="text-gray-600 dark:text-gray-400">
+              Our AI algorithms help you optimize your resume with smart suggestions and content enhancements.
             </p>
           </Card>
 
-          <Card className="p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border-0 shadow-lg animate-fade-in animation-delay-200">
-            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:rotate-12">
-              <Edit className="w-8 h-8 text-white" />
+          {/* Feature 2 */}
+          <Card className="p-6 hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 animate-fade-in">
+            <div className="flex items-center space-x-4 mb-4">
+              <Zap className="w-6 h-6 text-purple-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">Easy-to-Use Builder</h3>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">AI Enhancement</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Our AI analyzes your resume and provides intelligent suggestions to improve impact and readability
+            <p className="text-gray-600 dark:text-gray-400">
+              Create your resume in minutes with our intuitive drag-and-drop builder. No design skills required!
             </p>
           </Card>
 
-          <Card className="p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 border-0 shadow-lg animate-slide-in-right">
-            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 transform transition-transform duration-300 hover:rotate-12">
-              <FileText className="w-8 h-8 text-white" />
+          {/* Feature 3 */}
+          <Card className="p-6 hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 animate-slide-in-right">
+            <div className="flex items-center space-x-4 mb-4">
+              <Star className="w-6 h-6 text-yellow-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">Professionally Designed Templates</h3>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Professional Templates</h3>
-            <p className="text-gray-600 leading-relaxed">
-              Beautiful, ATS-friendly templates designed by professionals to help you make the best impression
+            <p className="text-gray-600 dark:text-gray-400">
+              Choose from a wide range of professionally designed templates to make your resume stand out.
+            </p>
+          </Card>
+
+          {/* Feature 4 */}
+          <Card className="p-6 hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 animate-slide-in-left">
+            <div className="flex items-center space-x-4 mb-4">
+              <Users className="w-6 h-6 text-green-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">ATS Optimization</h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400">
+              Ensure your resume is ATS-friendly, increasing your chances of getting past automated screening systems.
+            </p>
+          </Card>
+
+          {/* Feature 5 */}
+          <Card className="p-6 hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 animate-fade-in">
+            <div className="flex items-center space-x-4 mb-4">
+              <Download className="w-6 h-6 text-red-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">Multiple Formats</h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400">
+              Download your resume in multiple formats, including PDF, DOCX, and TXT.
+            </p>
+          </Card>
+
+          {/* Feature 6 */}
+          <Card className="p-6 hover:shadow-xl transform hover:scale-105 transition-all duration-300 dark:bg-gray-800 dark:border-gray-700 animate-slide-in-right">
+            <div className="flex items-center space-x-4 mb-4">
+              <Target className="w-6 h-6 text-indigo-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-200">Goal Tracking</h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400">
+              Set your career goals and track your progress with our built-in goal tracking tools.
             </p>
           </Card>
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-16 animate-fade-in">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Build Your Dream Resume?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who've landed their dream jobs with urCV.ai
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/builder">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-semibold">
-                Get Started for Free
-              </Button>
-            </Link>
-            <Link to="/templates">
-              <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg transition-all duration-300">
-                View Templates
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
+      {/* Call to Action Section */}
+      <section className="container mx-auto px-4 py-24 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-8 animate-fade-in">
+          Ready to Transform Your Career?
+        </h2>
+        <p className="text-lg text-gray-700 dark:text-gray-300 mb-12 animate-slide-in-bottom">
+          Join thousands of satisfied users and create a resume that gets you hired!
+        </p>
+        <Link to="/builder">
+          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg transform hover:scale-105 transition-all duration-200">
+            Get Started Today <ChevronRight className="ml-2" />
+          </Button>
+        </Link>
+      </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 animate-fade-in">
+      <footer className="bg-gray-900 dark:bg-gray-950 text-white py-8 mt-16 transition-colors duration-300">
         <div className="container mx-auto px-4 text-center">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <div className="w-6 h-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
@@ -130,9 +155,11 @@ const Index = () => {
             </div>
             <span className="text-xl font-bold">urCV.ai</span>
           </div>
-          <p className="text-gray-400">© 2024 N-PCs. All rights reserved.</p>
+          <p className="text-gray-400 dark:text-gray-500">© 2024 N-PCs. All rights reserved.</p>
         </div>
       </footer>
+
+      <FloatingChatBot />
     </div>
   );
 };
