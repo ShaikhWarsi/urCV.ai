@@ -189,7 +189,7 @@ export const extractResumeDataWithAI = async (resumeText: string): Promise<Enhan
       }
     }
 
-    Extract all relevant information and organize it properly. If information is missing, leave the field empty.`;
+    Extract all relevant information and organize it properly. If information is missing, leave the field empty. Return ONLY the JSON, no markdown formatting.`;
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
@@ -200,19 +200,46 @@ export const extractResumeDataWithAI = async (resumeText: string): Promise<Enhan
     const response = completion.choices[0]?.message?.content;
     if (!response) throw new Error('No response from AI');
 
+    console.log('Raw AI response:', response);
+
     try {
-      const parsedData = JSON.parse(response);
+      // Clean the response by removing markdown code blocks and extra whitespace
+      let cleanResponse = response.trim();
+      
+      // Remove markdown code blocks if present
+      if (cleanResponse.startsWith('```json')) {
+        cleanResponse = cleanResponse.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+      } else if (cleanResponse.startsWith('```')) {
+        cleanResponse = cleanResponse.replace(/^```\s*/, '').replace(/\s*```$/, '');
+      }
+      
+      // Remove any remaining backticks or formatting
+      cleanResponse = cleanResponse.replace(/^`+|`+$/g, '').trim();
+      
+      console.log('Cleaned response:', cleanResponse);
+      
+      const parsedData = JSON.parse(cleanResponse);
+      
       // Generate IDs for experience and education if missing
-      parsedData.experience = parsedData.experience.map((exp: any, index: number) => ({
-        ...exp,
-        id: exp.id || `exp-${index + 1}`
-      }));
-      parsedData.education = parsedData.education.map((edu: any, index: number) => ({
-        ...edu,
-        id: edu.id || `edu-${index + 1}`
-      }));
+      if (parsedData.experience && Array.isArray(parsedData.experience)) {
+        parsedData.experience = parsedData.experience.map((exp: any, index: number) => ({
+          ...exp,
+          id: exp.id || `exp-${index + 1}`
+        }));
+      }
+      
+      if (parsedData.education && Array.isArray(parsedData.education)) {
+        parsedData.education = parsedData.education.map((edu: any, index: number) => ({
+          ...edu,
+          id: edu.id || `edu-${index + 1}`
+        }));
+      }
+      
+      console.log('Successfully parsed data:', parsedData);
       return parsedData;
-    } catch {
+    } catch (parseError) {
+      console.error('JSON parsing error:', parseError);
+      console.error('Failed to parse response:', response);
       // Fallback if JSON parsing fails
       throw new Error('Failed to parse AI response');
     }
