@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FileText, User, Edit } from "lucide-react";
+import { FileText, User, Edit, CheckCircle2, Lightbulb, Trophy, Target, Sparkles, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import Footer from "@/components/layout/Footer";
 import LogoLoop from '@/components/LogoLoop';
 import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiVite, SiVercel, SiFigma, SiGithub, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiDocker, SiGooglecloud, SiFirebase } from 'react-icons/si';
+import { Badge } from "@/components/ui/badge";
 
 // Create a larger array of logos for better animation
 const techLogos = [
@@ -85,6 +86,42 @@ const techLogos = [
   },
 ];
 
+const resumeTips = [
+  {
+    icon: <Target className="w-6 h-6 text-blue-500" />,
+    title: "Tailor Your Resume",
+    description: "Customize your resume for each job application by using keywords from the job description."
+  },
+  {
+    icon: <Trophy className="w-6 h-6 text-yellow-500" />,
+    title: "Quantify Achievements",
+    description: "Use numbers (%, $, #) to show the impact of your work, e.g., 'Increased sales by 20%'."
+  },
+  {
+    icon: <Lightbulb className="w-6 h-6 text-green-500" />,
+    title: "Use Action Verbs",
+    description: "Start bullet points with strong action verbs like 'Managed', 'Developed', or 'Spearheaded'."
+  },
+  {
+    icon: <CheckCircle2 className="w-6 h-6 text-purple-500" />,
+    title: "Keep it Concise",
+    description: "Aim for 1-2 pages. Stick to the most relevant information for the role."
+  }
+];
+
+const resumeExamples = [
+  {
+    role: "Software Engineer",
+    summary: "Passionate developer with 5+ years of experience in building scalable web applications using React and Node.js. Proven track record of improving system performance by 30%.",
+    highlights: ["Led a team of 4 developers", "Optimized database queries", "Implemented CI/CD pipelines"]
+  },
+  {
+    role: "Marketing Manager",
+    summary: "Results-driven marketing professional with expertise in digital strategy and brand management. Successfully managed a $50k monthly budget with 4x ROI.",
+    highlights: ["Increased organic traffic by 150%", "Launched 3 major product campaigns", "Managed social media across 5 platforms"]
+  }
+];
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-white overflow-hidden font-sans">
@@ -135,6 +172,11 @@ const Index = () => {
                 View Templates
               </Button>
             </Link>
+            <Link to="/comparison">
+              <Button size="lg" variant="ghost" className="text-blue-600 hover:text-blue-700 hover:bg-blue-50 px-8 py-4 rounded-lg transition-all duration-300 font-semibold text-lg">
+                Good vs Bad CV
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -180,6 +222,88 @@ const Index = () => {
               Beautiful, ATS-friendly templates designed by professionals to help you make the best impression
             </p>
           </Card>
+        </div>
+      </div>
+
+      {/* Resume Tips & Examples Section */}
+      <div className="bg-gray-50 py-24">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Master Your Resume
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Expert tips and real-world examples to help you land your dream job
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Tips Column */}
+            <div className="space-y-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <Lightbulb className="w-8 h-8 text-yellow-500" />
+                <h3 className="text-2xl font-bold text-gray-900">Expert Tips</h3>
+              </div>
+              <div className="grid gap-6">
+                {resumeTips.map((tip, index) => (
+                  <Card key={index} className="p-6 hover:shadow-md transition-shadow duration-300 border-none bg-white shadow-sm">
+                    <div className="flex items-start space-x-4">
+                      <div className="mt-1">{tip.icon}</div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 mb-1">{tip.title}</h4>
+                        <p className="text-gray-600 text-sm leading-relaxed">{tip.description}</p>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Examples Column */}
+            <div className="space-y-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <BookOpen className="w-8 h-8 text-blue-500" />
+                <h3 className="text-2xl font-bold text-gray-900">Resume Examples</h3>
+              </div>
+              <div className="grid gap-6">
+                {resumeExamples.map((example, index) => (
+                  <Card key={index} className="p-6 border-l-4 border-l-blue-500 bg-white shadow-sm">
+                    <div className="flex items-center justify-between mb-4">
+                      <Badge variant="secondary" className="bg-blue-50 text-blue-700 hover:bg-blue-100 border-none">
+                        {example.role}
+                      </Badge>
+                      <Sparkles className="w-4 h-4 text-blue-400" />
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <h5 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Professional Summary</h5>
+                        <p className="text-gray-700 text-sm italic leading-relaxed">"{example.summary}"</p>
+                      </div>
+                      <div>
+                        <h5 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Key Highlights</h5>
+                        <ul className="grid gap-2">
+                          {example.highlights.map((highlight, hIndex) => (
+                            <li key={hIndex} className="flex items-center text-sm text-gray-600">
+                              <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-2" />
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link to="/comparison">
+              <Button size="lg" variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-10 py-6 rounded-xl transition-all duration-300 font-bold text-lg shadow-md hover:shadow-xl">
+                See Detailed Good vs Bad Examples
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 

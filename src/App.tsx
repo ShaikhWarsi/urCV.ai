@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Builder from "./pages/Builder";
 import NotFound from "./pages/NotFound";
 import Templates from "./pages/Templates";
+import Comparison from "./pages/Comparison";
 import LoadingScreen from "./components/LoadingScreen";
 
 const queryClient = new QueryClient();
@@ -83,6 +84,20 @@ const AnimatedRoutes = () => {
               transition={pageTransition}
             >
               <Templates />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/comparison"
+          element={
+            <motion.div
+              initial="initial"
+              animate="in"
+              exit="out"
+              variants={pageVariants}
+              transition={pageTransition}
+            >
+              <Comparison />
             </motion.div>
           }
         />
